@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+</head>
+
+<body>
+    <header>
+        <h1>Factura</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Digite los detalles del producto: </h2>
+            <form action="#">
+                <label for="codigo">Codigo</label>
+                <input type="number" name="codigo" id="codigo"> <br>
+
+                <label for="producto">Producto</label>
+                <input type="text" name="producto" id="producto"> <br>
+
+                <label for="unds">Digite la cantidad de productos que necesites</label>
+                <input type="number" name="unds" id="unds"> <br>
+
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio"> <br> <br>
+
+                <button id="btn-calcular">Calcular precio</button>
+                <button id="btn-clear">Borrar datos</button>
+            </form>
+        </section>
+    </main>
+    <p id="r"></p>
+</body>
+<script>
+    const codigo = document.querySelector("#codigo");
+    const producto = document.querySelector("#producto");
+    const unds = document.querySelector("#unds");
+    const precio = document.querySelector("#precio");
+
+    const btnCalcular = document.querySelector("#btn-calcular");
+    const btnClear = document.querySelector("#btn-clear");
+
+    event();
+
+    function event() {
+        btnCalcular.addEventListener('click', calcular);
+        btnClear.addEventListener('click', () => {
+            codigo.value = "";
+            producto.value = "";
+            unds.value = "";
+            precio.value = "";
+        });
+    }
+
+    function calcular(e) {
+        e.preventDefault();
+        console.log(unds.value);
+        if (unds.value == 0 && unds.value >= 0) {
+            r.innerHTML = 'No puedes pedir una cantidad negativa o cero productos'
+        } else {
+            let total;
+            total = (precio.value * unds.value) + ((precio.value * unds.value) * 0.15);
+            if (precio >= 800) {
+                total = (total * 10) + total;
+                r.innerHTML = `Total facutra, se aplica descuento del 10% por compras superiores a 799 €: ${total} €`;
+            } else {
+                r.innerHTML = `Total facutra: ${total} €`;
+            }
+        }
+    }
+</script>
+
+</html>
