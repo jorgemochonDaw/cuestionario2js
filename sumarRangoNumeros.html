@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario 2</title>
+</head>
+
+<body>
+    <header>
+        <h1>Sumar rango de numeros</h1>
+    </header>
+    <hr>
+    <main>
+        <section>
+            <form action="#">
+                <label for="n1">Digite un numero que indique el inicio del rago</label>
+                <input type="number" name="n1" id="n1"> <br> <br>
+                <label for="n2">Digite un numero que indique el final del rango</label>
+                <input type="number" name="n2" id="n2"> <br> <br>
+                <button id="btn-sumarRango">Sumar el rango de numeros</button>
+            </form>
+            <ul id="mostrarRango"></ul>
+            <p id="mostrarTotal"></p>
+        </section>
+    </main>
+</body>
+<script>
+    const n1 = document.querySelector('#n1');
+    const n2 = document.querySelector('#n2');
+    const btnSumar = document.querySelector('#btn-sumarRango');
+
+    const mostrarRango = document.querySelector('#mostrarRango');
+    const mostrarTotal = document.querySelector('#mostrarTotal');
+
+    ejecutarFunciones();
+
+    function ejecutarFunciones() {
+        event();
+    }
+
+    function event() {
+        btnSumar.addEventListener('click', sumar);
+    }
+
+    function cargarRango() {
+        if (n1.value == "" || n2.value == "") {
+            mostrarRango.innerHTML = "Digite los dos numeros";
+        } else {
+            for (let i = n1.value; i <= n2.value; i++) {
+                let li = document.createElement('li');
+                li.textContent = i;
+                mostrarRango.append(li);
+            }
+        }
+    }
+
+    function sumar(e) {
+        e.preventDefault();
+        cargarRango();
+    }
+</script>
+
+</html>
