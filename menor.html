@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario</title>
+</head>
+
+<body>
+    <header>
+        <h1>Menor</h1>
+    </header>
+    <main>
+        <section>
+            <form action=#">
+                <label for="lado">Lado</label>
+                <input type="number" name="lado" id="lado"> <br> <br>
+
+                <button id="btn-calcular">Calcular</button>
+            </form>
+        </section>
+    </main>
+    <p id="r"></p>
+</body>
+<script>
+    const lado = document.querySelector('#lado');
+
+    const r = document.querySelector('#r');
+    const btnVerificar = document.querySelector('#btn-calcular');
+    event();
+
+    function event() {
+        btnVerificar.addEventListener('click', calcularArea);
+    }
+
+    function calcularArea(e) {
+        e.preventDefault();
+        let area = lado.value * lado.value;
+        r.innerHTML = "Area cuadrado: " + area;
+    }
+</script>
+
+</html>
