@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario</title>
+</head>
+
+<body>
+    <header>
+        <h1>Area triangulo</h1>
+    </header>
+    <main>
+        <section>
+            <form action=#">
+                <label for="base">Digite la base</label>
+                <input type="number" name="base" id="base"> <br> <br>
+                <label for="altura">Digite la altura</label>
+                <input type="number" name="altura" id="altura"> <br><br>
+                <button id="btn-calcular">Calcular</button>
+                <button id="btn-more" disabled=true>Introducir mas triangulos</button>
+            </form>
+        </section>
+    </main>
+    <p id="r"></p>
+</body>
+<script>
+    const base = document.querySelector('#base');
+    const altura = document.querySelector('#altura');
+    const btnCalcular = document.querySelector('#btn-calcular');
+
+    const r = document.querySelector('#r');
+    const btnMore = document.querySelector('#btn-more');
+
+    let areaMayor12 = [];
+
+    event();
+
+    function event() {
+        btnCalcular.addEventListener('click', calcular);
+        btnMore.addEventListener('click', moreTriangulos)
+    }
+
+    function calcular(e) {
+        e.preventDefault();
+        let area = (base.value * altura.value) / 2;
+        r.innerHTML =
+            `
+            Altura: ${altura.value}
+            Base: ${base.value}
+            Area: ${area}
+        `;
+
+        if (area > 12) {
+            areaMayor12.push(area);
+        }
+
+        btnMore.disabled = false;
+        btnCalcular.disabled = true;
+    }
+
+    function moreTriangulos(e) {
+        e.preventDefault();
+        r.innerHTML = "Triangulos con un area mayor que 12: " + areaMayor12.length + " triangulo/os";
+        btnCalcular.disabled = false;
+        btnMore.disabled = true;
+    }
+</script>
+
+</html>
