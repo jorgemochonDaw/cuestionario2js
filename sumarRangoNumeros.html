@@ -21,7 +21,9 @@
                 <label for="n2">Digite un numero que indique el final del rango</label>
                 <input type="number" name="n2" id="n2"> <br> <br>
                 <button id="btn-sumarRango">Sumar el rango de numeros</button>
+                <button id="btn-clear" disabled=true>Borrar datos</button>
             </form>
+            <h2>Mostrar rango</h2>
             <ul id="mostrarRango"></ul>
             <p id="mostrarTotal"></p>
         </section>
@@ -30,10 +32,15 @@
 <script>
     const n1 = document.querySelector('#n1');
     const n2 = document.querySelector('#n2');
+
     const btnSumar = document.querySelector('#btn-sumarRango');
+    const btnClear = document.querySelector('#btn-clear');
 
     const mostrarRango = document.querySelector('#mostrarRango');
     const mostrarTotal = document.querySelector('#mostrarTotal');
+
+    const rango = [];
+    let li;
 
     ejecutarFunciones();
 
@@ -43,6 +50,7 @@
 
     function event() {
         btnSumar.addEventListener('click', sumar);
+        btnClear.addEventListener('click', limpiar);
     }
 
     function cargarRango() {
@@ -50,9 +58,10 @@
             mostrarRango.innerHTML = "Digite los dos numeros";
         } else {
             for (let i = n1.value; i <= n2.value; i++) {
-                let li = document.createElement('li');
+                li = document.createElement('li');
                 li.textContent = i;
                 mostrarRango.append(li);
+                rango.push(i);
             }
         }
     }
@@ -60,6 +69,26 @@
     function sumar(e) {
         e.preventDefault();
         cargarRango();
+        btnSumar.disabled = true;
+        const suma = rango.reduce((a, b) => parseInt(a) + parseInt(b));
+        mostrarTotal.textContent = "Total suma del rango: " + suma;
+        btnClear.disabled = false;
+
+    }
+
+    function limpiar(e) {
+        e.preventDefault();
+        rango.splice(0, rango.length);
+        btnClear.disabled = true;
+        mostrarTotal.textContent = "";
+        while (mostrarRango.firstChild) {
+            mostrarRango.removeChild(mostrarRango.lastChild);
+        }
+        btnSumar.disabled = false;
+    }
+
+    function limpiarLi() {
+        
     }
 </script>
 
